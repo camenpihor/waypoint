@@ -7,6 +7,7 @@ curl -X POST http://127.0.0.1:5000/trees -H "Content-Type: application/json" -d 
 import os
 
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from flask_talisman import Talisman
 
 from waypoint import postgres, trees
@@ -14,6 +15,7 @@ from waypoint import postgres, trees
 DATABASE_URL = os.environ["DATABASE_URL"]
 
 app = Flask(__name__)
+CORS(app)
 Talisman(app)
 
 
