@@ -45,6 +45,9 @@ def remove_tree(location_id: int) -> tuple[dict, int]:
 
 @app.route("/trees", methods=["POST"])
 def add_tree() -> tuple[dict, int]:
+    necessary_keys = trees.INSERT_KEYS
+    if necessary_keys - set(request.json):
+        return jsonify({"message": f"Request data must include {necessary_keys}"}), 404
     with postgres.connect(DATABASE_URL) as client:
         new_location = trees.insert(client=client, **request.json)
     return jsonify(new_location.to_dict()), 201

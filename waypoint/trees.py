@@ -4,6 +4,16 @@ from typing import Optional
 
 from psycopg2.extras import DictCursor
 
+INSERT_KEYS = {
+    "tree_id",
+    "latin_name",
+    "common_name",
+    "latitude",
+    "longitude",
+    "source",
+    "is_native",
+}
+
 
 @dataclass
 class TreeLocation:
